@@ -1,3 +1,6 @@
+<?php
+require_once 'controlador.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
