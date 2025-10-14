@@ -14,7 +14,6 @@
                 'version' => 'latest',
                 'region' => $this->region
             ]);
-            echo 'Conectaaaa';
            } catch (\Throwable $th) {
                 global $error;
                 $error=$th->getMessage();
@@ -33,6 +32,25 @@
                $error=$th->getMessage();
             }
 
+            return $resultado;
+        }
+
+        public function obtenerBuckets(){
+            $resultado = array();
+            try {
+                //Obtenemos toda la información de los buckets
+                //creado en s3
+                $tmp = $this->conexion->listBuckets();
+                //Devolvemos solamente el nombre de los buckets.
+                //Los buckets está en la clave Bucket del array $tmp.
+                foreach($tmp['Buckets'] as $b){
+                    //El nombre está la clave Name del array $b
+                    $resultado[]=$b['Name'];
+                }
+            } catch (\Throwable $th) {
+                global  $error;
+                $error=$th->getMessage();
+            }
             return $resultado;
         }
     }
