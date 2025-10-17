@@ -53,5 +53,37 @@
             }
             return $resultado;
         }
+
+        public function cargarObjeto($bucket, $rutaObjeto, $nombreObjeto){
+            $resultado = false;
+            try {
+                $this->conexion->putObject([
+                    'Bucket'=>$bucket,
+                    'Key'=> $nombreObjeto,
+                    'SourceFile' => $rutaObjeto,
+                    'ContentType' => mime_content_type($rutaObjeto)
+                ]);
+                $resultado = true;
+            } catch (\Throwable $th) {
+                global  $error;
+                $error=$th->getMessage();
+            }
+            return $resultado;
+        }
+        public function crearObjeto($bucket,$texto){
+            $resultado=false;
+            try {
+                $this->conexion->putObject([
+                    'Bucket'=>$bucket,
+                    'Key'=> 'fichero'.date('YmdHis').'.txt',
+                    'Body' => $texto
+                ]);
+                $resultado = true;
+            } catch (\Throwable $th) {
+                global  $error;
+                $error=$th->getMessage();
+            }
+            return $resultado;
+        }
     }
 ?>

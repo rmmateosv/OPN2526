@@ -17,12 +17,17 @@ require_once 'controlador.php';
             <button type="submit" name="crearB">Crear Bucket</button>
         </fieldset>
     </form>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <fieldset>
             <legend>Subir objetos a Bucket</legend>
             <label for="bucket">Selecciona Bucket</label><br>
             <select name="bucket" id="bucket">
-
+                <?php
+                //Insertar un option por cada bucket de $buckets
+                foreach($buckets as $b){
+                    echo '<option>'.$b.'</option>';
+                }
+                ?>
             </select><br>
             <label for="objeto">Objeto</label><br>
             <input type="file" name="objeto" id="objeto" placeholder="Selecciona Fichero">
@@ -37,7 +42,12 @@ require_once 'controlador.php';
             <legend>Gestionar Objetos</legend>
             <label for="bucket">Selecciona Bucket</label><br>
             <select name="bucket" id="bucket">
-
+                <?php
+                //Insertar un option por cada bucket de $buckets
+                foreach($buckets as $b){
+                    echo '<option>'.$b.'</option>';
+                }
+                ?>
             </select><br>
             <label for="objeto">Selecciona Objeto</label><br>
             <select name="objeto" id="objeto">
