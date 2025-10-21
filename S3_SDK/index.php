@@ -41,7 +41,7 @@ require_once 'controlador.php';
         <fieldset>
             <legend>Gestionar Objetos</legend>
             <label for="bucket">Selecciona Bucket</label><br>
-            <select name="bucket" id="bucket">
+            <select name="bucket" id="bucket" onclick="submit()">
                 <?php
                 //Insertar un option por cada bucket de $buckets
                 foreach($buckets as $b){
@@ -50,8 +50,20 @@ require_once 'controlador.php';
                 ?>
             </select><br>
             <label for="objeto">Selecciona Objeto</label><br>
+            <?php 
+            if(isset($_POST['bucket'])||isset($buckets[0])){
+                $objetos = $awsS3->obtenerObjetos((isset($_POST['bucket'])?$_POST['bucket']:$buckets[0]));
+            }
+            else{
+                $objetos=array();
+            }
+            ?>
             <select name="objeto" id="objeto">
-
+                <?php
+                foreach($objetos as $o){
+                    echo '<option>'.$o.'</option>';
+                }
+                ?>
             </select><br>
             <button type="submit" name="descargarO">Descargar/Ver Objeto</button><br>
             <button type="submit" name="borrarO">Borrar Objeto</button>

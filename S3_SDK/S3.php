@@ -85,5 +85,20 @@
             }
             return $resultado;
         }
+        public function obtenerObjetos($bucket){
+            $resultado = array();
+            try {
+              $r=$this->conexion->listObjectsV2([
+                'Bucket'=> $bucket
+              ])  ;
+              foreach($r['Contents'] as $o){
+                $resultado[]=$o['Key'];
+              }
+            } catch (\Throwable $th) {
+                global  $error;
+                $error=$th->getMessage();
+            }
+            return $resultado;
+        }
     }
 ?>
