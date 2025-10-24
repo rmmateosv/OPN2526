@@ -45,7 +45,7 @@ require_once 'controlador.php';
                 <?php
                 //Insertar un option por cada bucket de $buckets
                 foreach($buckets as $b){
-                    echo '<option>'.$b.'</option>';
+                    echo '<option '. rellenarSeleccionado($b).'>'.$b.'</option>';
                 }
                 ?>
             </select><br>
@@ -69,6 +69,22 @@ require_once 'controlador.php';
             <button type="submit" name="borrarO">Borrar Objeto</button>
         </fieldset>
     </form>
+    <div>
+        <!-- Objeto de S3 si hemos dado a Ver/Descargar -->
+        <?php
+            if(!empty($datos)){
+               if(strpos($datos['tipo'],'image/')===0){
+                    $contenido = base64_encode($datos['contenido']);
+                    echo '<img src="data:'.$datos['tipo'].';base64,'
+                            .$contenido.'">';
+                }
+                else{
+                    echo $datos['contenido'];
+                }
+                
+            }
+        ?>
+    </div>
     <div>
         <?php 
         if(isset($error)){
