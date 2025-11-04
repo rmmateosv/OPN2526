@@ -7,7 +7,9 @@ class Bd{
         //Establecer la conexión con la BD
         try {
             //code...
-            $this->conexion = new PDO()
+            
+            $url='mysql:host=?;port=?;dbname=?'
+            $this->conexion = new PDO($url,$us,$ps);
         } catch (\Throwable $th) {
            global $error;
            $error=$th->getMessage();
