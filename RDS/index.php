@@ -1,3 +1,6 @@
+<?php 
+require_once 'controlador.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +23,23 @@
             <option>En proceso</option>
             <option>Completada</option>
         </select></label>
+
     </form>
+    <?php 
+    if(isset($error)){
+        echo '<div style="color:red">';
+        foreach($error  as $e){
+            echo '<h3>'.$e.'<h3>';
+        }
+        echo '</div>';
+    }
+     if(isset($mensaje)){
+        echo '<div style="color:green">';
+        foreach($mensaje  as $m){
+            echo '<h3>'.$m.'<h3>';
+        }
+        echo '</div>';
+    }
+    ?>
 </body>
 </html>
