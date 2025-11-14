@@ -23,7 +23,7 @@ require_once 'controlador.php';
             <option>En proceso</option>
             <option>Completada</option>
         </select></label>
-
+        <button type="submit" name="crear">+</button>
     </form>
     <?php 
     if(isset($error)){
